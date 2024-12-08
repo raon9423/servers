@@ -1,0 +1,103 @@
+Table users {
+  id int [pk]
+  email varchar
+  password varchar
+  name varchar
+  role int
+  avatar varchar
+  phone int
+  created_at datetime
+  updated_at datetime
+}
+Table categories {
+  id int [pk]
+  name varchar
+  image text
+}
+Table products {
+  id int [pk]
+  name varchar
+  image text
+  price int
+  oldprice int
+  description text
+  spectification text
+  buyturn int
+  quantity int
+  brand_id int
+  category_id int
+  created_at datetime
+  updated_at datetime
+}
+Ref: "categories"."id" < "products"."category_id"
+Table brands {
+  id int [pk]
+  name varchar
+  image text
+}
+Ref: "brands"."id" < "products"."brand_id"
+Table feesback {
+  id int [pk]
+  product_id int
+  user_id int
+  star int
+  content text
+  created_at datetime
+  updated_at datetime
+}
+Ref: "products"."id" < "feesback"."product_id"
+Ref: "users"."id" < "feesback"."user_id"
+Table orders {
+  id int [pk]
+  user_id int
+  note text
+  total int
+  created_at datetime
+  updated_at datetime
+}
+Ref: "users"."id" < "orders"."user_id"
+Table orders_details {
+  id int [pk]
+  order_id int
+  product_id int
+  price int
+  quantity int
+  created_at datetime
+  updated_at datetime
+}
+Ref: "orders"."id" < "orders_details"."order_id"
+Table news {
+  id int [pk]
+  title varchar
+  image text
+  content text
+  created_at datetime
+  updated_at datetime
+}
+Table news_details {
+  id int [pk]
+  product_id int
+  news_id int
+  created_at datetime
+  updated_at datetime
+}
+Ref: "news"."id" < "news_details"."news_id"
+Ref: "products"."id" < "news_details"."product_id"
+Ref: "products"."id" < "orders_details"."product_id"
+Table banner {
+  id int [pk]
+  name varchar
+  image text
+  status int
+  created_at datetime
+  updated_at datetime
+}
+Table banner_details {
+  id int [pk]
+  product_id int
+  banner_id int
+  created_at datetime
+  updated_at datetime
+}
+Ref: "products"."id" < "banner_details"."product_id"
+Ref: "banner"."id" < "banner_details"."banner_id"
