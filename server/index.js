@@ -21,7 +21,7 @@ app.use(cors());
 // Đang thử nghiệm
 app.use(
   session({
-    secret: 'sOZL78/md9BukQ+CzYMLYDZko5gQT3z/yT2odZS0E7w=',
+    secret: '',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }, 
@@ -37,9 +37,9 @@ passport.deserializeUser((user, done) => done(null, user));
 passport.use(
   new GoogleStrategy(
     {
-      clientID: '1065301207599-7fect1c119c61e3b5r3aobovn9ui3pn6.apps.googleusercontent.com',
-      clientSecret: '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',
-      callbackURL: 'http://localhost:3000/auth/google/callback',
+      clientID: '',
+      clientSecret: '',
+      callbackURL: '',
     },
     (accessToken, refreshToken, profile, done) => {
       done(null, profile);
